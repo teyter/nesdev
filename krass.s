@@ -400,3 +400,85 @@ northeast:
        cpy #100
        bcs southeast
        jmp northeast
+
+;
+; chapter 9: the stack
+;
+; ex 11 pg 197
+TXA
+PHA
+TYA
+PHA
+JSR LOGON
+PLA
+TAY
+PLA
+TAX
+;
+; ex. 12
+STY SAVEY
+JSR NEWLOG
+LDY SAVEY
+_SAVEY: .res 1
+;
+; ex. 14
+TSX
+INX
+TXS
+;
+; Chapter 9 self test
+;
+; 1
+LDX #$FF
+TXS
+; 2
+$01FF
+$01FE
+; 3
+PHA ; A to stack
+PHP ; status to stack
+
+TXA ; x to a
+PHA ; a to stack
+
+TYA ; y to a
+PHA ; a to stack
+; 4
+PLA
+TAY
+PLA
+TAX
+
+PLP
+PLA
+; 5
+LDA #0
+PHA
+;
+; chapter 10
+; ex 9
+a x status
+PLP
+PLA
+TAX
+PLA
+;
+; ex 16
+TEITUR: CLC
+        ADC #5
+        BCS DRASL
+        RTS
+DRASL   LDA #0
+;
+; ex 13
+ECHO:   JSR INPUT
+        JSR OUTPUT
+        STA INCHAR
+;
+; ex 14
+TEITUR: JSR INPUT
+        CMP #$20
+        BCC BLA
+
+BLA     TAX
+        RTS
