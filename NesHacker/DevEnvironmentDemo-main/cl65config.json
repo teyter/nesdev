@@ -1,0 +1,5 @@
+{
+  "executable": "C:\\cc65\\bin\\cl65",
+  "input": "teitur.s",
+  "params": "--verbose --target nes -o teitur.nes"
+}

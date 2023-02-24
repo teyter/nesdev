@@ -373,33 +373,33 @@ bcs LETTER
 ldx #5
 ldy #5
 southwest:
-       dex
-       beq southeast
-       dey
-       beq northwest
-       jmp southwest
+  dex
+  beq southeast
+  dey
+  beq northwest
+  jmp southwest
 northwest:
-       dex
-       beq northeast
-       iny
-       cpy #100
-       bcs southwest
-       jmp northwest
+  dex
+  beq northeast
+  iny
+  cpy #100
+  bcs southwest
+  jmp northwest
 southeast:
-       inx
-       cpx #100
-       bcs southwest
-       dey
-       beq northeast 
-       jmp southeast
+  inx
+  cpx #100
+  bcs southwest
+  dey
+  beq northeast 
+  jmp southeast
 northeast:
-       inx
-       cpx #100
-       bcs northwest
-       iny
-       cpy #100
-       bcs southeast
-       jmp northeast
+  inx
+  cpx #100
+  bcs northwest
+  iny
+  cpy #100
+  bcs southeast
+  jmp northeast
 
 ;
 ; chapter 9: the stack
@@ -482,3 +482,38 @@ TEITUR: JSR INPUT
 
 BLA     TAX
         RTS
+;
+; ch 11, ex 22
+; (a)
+00001111
+11110001
+; (b)
+01101110
+10010010
+;
+; ez 2s complement
+LDA NEGNUM
+EOR #%11111111
+CLC
+ADC #1
+
+LDA SUBBER
+EOR #%11111111
+CLC
+ADC #1
+STA SUBBER
+;
+; x 25
+; (a)
+#0
+; (b)
+#127
+; (c)
+%1000 0000
+%0111 1111
+%1000 0000
+#-128
+; (d)
+%1111 1111
+%0000 0001
+#-1
